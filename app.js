@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
-require('./Config/Conn');
-dotenv.config({path:'./Config/config.env'});
+require('./db/conn');
+dotenv.config({path:'./config.env'});
 
 // SECURITY MIDDLEWARE
 const cors = require('cors');
