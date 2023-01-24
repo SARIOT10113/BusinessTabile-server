@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
 const dotenv = require('dotenv');
-require('./DB/Conn');
-dotenv.config({path:'./config.env'});
+require('./Config/Conn');
+dotenv.config({path:'./Config/config.env'});
 
 // SECURITY MIDDLEWARE
 const cors = require('cors');
@@ -12,6 +12,7 @@ const xssClean = require('xss-clean');
 const expressMongoSanitize = require('express-mongo-sanitize');
 const rateLimit = require('express-rate-limit');
 const hpp = require('hpp');
+const router = require('./Routers/ProductRouter');
 
 //security middleware implement
 app.use(cors());
@@ -30,6 +31,6 @@ const limiter = rateLimit({
 	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 });
 app.use(limiter);
-
+app.use("/api/v1",router)
 
 module.exports = app ;
